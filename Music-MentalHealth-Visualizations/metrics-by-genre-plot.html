@@ -1,0 +1,638 @@
+<!--
+	To run this, start a python http server:
+	Open your terminal and run the following command:
+
+			python3 -m http.server
+
+	Then go to localserver, "http://0.0.0.0:8000/" or something.
+	Locate your html file, and run it from there.
+	That's it!
+-->
+
+<!DOCTYPE html>
+<html lang = "en">
+
+	<head>
+		<title>Final Project</title>
+		<meta charset = "UTF-8">
+		<!--Include the d3js library using CDN-->
+		<script src = "https://d3js.org/d3.v7.min.js"></script>
+
+		<style>9h
+			.tooltip 
+      		{
+        		position: absolute;
+        		text-align: center;
+        		padding: 6px;
+        		font-size: 14px;
+        		color: black;
+        		background-color: yellow;
+        		border: 1px solid darkgray;
+        		border-radius: 5px;
+        		pointer-events: none;
+      		}
+
+      		.buttonClass 
+      		{ 
+      			transform: translate(1px, 1px);
+  				color: black;
+  				transition-duration: 1s;
+  				border: 1px solid white;		
+  				padding: 10px 15px;
+  				text-align: center;
+  				text-decoration: none;
+  				display: block;
+  				font-size: 12px;
+  				margin: 4px 2px;
+  				cursor: pointer;
+  				border-radius: 5px;
+      		}
+
+      		.buttonClass:hover 
+      		{
+  				background-image: linear-gradient(to right, bisque 0%, bisque 100%);
+  				color: black;
+  				transition-duration: 1s;
+			}
+
+			.buttonLabel 
+      		{
+  				background-image: linear-gradient(to right, #85adad 0%, #85adad 100%);
+  				color: white;
+  				pointer-events: none;
+			}
+
+			.buttonClass:active
+			{
+				background-image: linear-gradient(to right, white 0%, white 100%);
+  				color: black;
+  				border: 1px solid darkslategray;
+  				transition-duration: 0.4s;
+			}
+
+			.buttonClass:focus
+			{
+				background-image: linear-gradient(to right, white 0%, white 100%);
+  				color: black;
+  				border: 1px solid darkslategray;
+  				transition-duration: 0.4s;
+			}
+
+			.buttonClass:visited
+			{
+				background-image: linear-gradient(to right, white 0%, white 100%);
+  				color: black;
+  				border: 1px solid darkslategray;
+  				transition-duration: 1s;
+			}
+
+			.button-container {
+  				float: left;
+			}
+
+		</style>
+
+	</head>
+
+	<body>
+
+		<div class = 'button-container'>
+			<button type = "button" class = "buttonClass buttonLabel" disabled>Click:</button>
+			<button type = "button" class = "buttonClass" onclick = "svg = document.getElementById('finalproject'); svg.innerHTML = ' '; draw_scatterplot(1);">Alternative</button>
+			<button type = "button" class = "buttonClass" onclick = "svg = document.getElementById('finalproject'); svg.innerHTML = ' '; draw_scatterplot(2);">Blues</button>
+			<button type = "button" class = "buttonClass" onclick = "svg = document.getElementById('finalproject'); svg.innerHTML = ' '; draw_scatterplot(3);">Hip/Hop</button>
+			<button type = "button" class = "buttonClass" onclick = "svg = document.getElementById('finalproject'); svg.innerHTML = ' '; draw_scatterplot(4);">Indie Alt</button>
+			<button type = "button" class = "buttonClass" onclick = "svg = document.getElementById('finalproject'); svg.innerHTML = ' '; draw_scatterplot(5);">Metal</button>
+			<button type = "button" class = "buttonClass" onclick = "svg = document.getElementById('finalproject'); svg.innerHTML = ' '; draw_scatterplot(6);">Pop</button>
+			<button type = "button" class = "buttonClass" onclick = "svg = document.getElementById('finalproject'); svg.innerHTML = ' '; draw_scatterplot(7);">Rock</button>
+		</div>
+		
+		<svg width = "1500" height = "1500" transform = "scale(0.75 0.75) translate(-100 -700)">
+  				
+  				<svg id = "finalproject"></svg>
+  			
+		</svg>
+
+		<script>
+
+			var fig_margin = { top: 25, right: 25, bottom: 25, left: 25 };
+    		var width = 200 - fig_margin.left - fig_margin.right;
+    		var height = 200 - fig_margin.top - fig_margin.bottom;
+			
+			var svg;
+			// define the tooltip element
+			var tooltip = d3.select("body")
+                			.append("div")
+                			// define a class for it so that we can style it
+                			.attr("class", "tooltip")
+                			// set the opacity to zero in the beginning
+                			.style("opacity", 0);
+
+            var data_flag;
+
+            function draw_scatterplot(data_flag)
+            {
+            	var data;
+	            Promise.all
+	            ([
+	            		
+	            		d3.csv("./data/genre_based_datasets/alternative_music_data.csv"),
+	            		d3.csv("./data/genre_based_datasets/blues_music_data.csv"),
+	            		d3.csv("./data/genre_based_datasets/hiphop_music_data.csv"),
+	            		d3.csv("./data/genre_based_datasets/indie_alt_music_data.csv"),
+	            		d3.csv("./data/genre_based_datasets/metal_music_data.csv"),
+	            		d3.csv("./data/genre_based_datasets/pop_music_data.csv"),
+	            		d3.csv("./data/genre_based_datasets/rock_music_data.csv"),
+	
+	            ]).then(([alt_data, blues_data, hiphop_data, indie_alt_data, metal_data, pop_data, rock_data]) => 
+	            {
+	
+	            	console.log(alt_data);
+	
+	            	if(data_flag == 1)
+	            	{
+	            		data = alt_data;
+	            	}
+	            	else if(data_flag == 2)
+	            	{
+	            		data = blues_data;
+	            	}
+	            	else if(data_flag == 3)
+	            	{
+	            		data = hiphop_data;
+	            	}
+	            	else if(data_flag == 4)
+	            	{
+	            		data = indie_alt_data;
+	            	}
+	            	else if(data_flag == 5)
+	            	{
+	            		data = metal_data;
+	            	}
+	            	else if(data_flag == 6)
+	            	{
+	            		data = pop_data;
+	            	}
+	            	else if(data_flag == 7)
+	            	{
+	            		data = rock_data;
+	            	}
+	            	else
+	            	{
+	
+	            	}
+	
+	
+	            	function getRandomInt(max) 
+					{
+	  					return Math.floor(Math.random() * max);
+					}
+	
+					const ALT_DATA_SIZE = alt_data.length;
+					const BLUES_DATA_SIZE = blues_data.length;
+					const HIPHOP_DATA_SIZE = hiphop_data.length;
+					const INDIE_ALT_SIZE = indie_alt_data.length;
+					const METAL_DATA_SIZE = metal_data.length;
+					const POP_DATA_SIZE = pop_data.length;
+					const ROCK_DATA_SIZE = rock_data.length;
+	
+					function genre_scatterplot(data)
+					{
+						var valence = [];
+						var energy = [];
+						var danceability = [];
+						var speechiness = [];
+						var acousticness = [];
+						var instrumentalness = [];
+						var tempo = [];
+	
+						var valence_min, valence_max;
+						var energy_min, energy_max;
+						var danceability_min, danceability_max;
+						var speechiness_min, speechiness_max;
+						var acousticness_min, acousticness_max;
+						var instrumentalness_min, instrumentalness_max;
+						var tempo_min, tempo_max;
+	
+	
+						function getRanges()
+						{
+							for(let i = 0; i < data.length; i++)
+							{	
+								valence[i] = data[i].valence;
+								energy[i] = data[i].energy;
+								danceability[i] = data[i].danceability;
+								speechiness[i] = data[i].speechiness;
+								acousticness[i] = data[i].acousticness;
+								instrumentalness[i] = data[i].instrumentalness;
+								tempo[i] = data[i].tempo;
+							}
+	
+							valence_min = Math.min(...valence);
+							energy_min = Math.min(...energy);
+							danceability_min = Math.min(...danceability);
+							speechiness_min = Math.min(...speechiness);
+							acousticness_min = Math.min(...acousticness);
+							instrumentalness_min = Math.min(...instrumentalness);
+							tempo_min = Math.min(...tempo);
+	
+							valence_max = Math.max(...valence);
+							energy_max = Math.max(...energy);
+							danceability_max = Math.max(...danceability);
+							speechiness_max = Math.max(...speechiness);
+							acousticness_max = Math.max(...acousticness);
+							instrumentalness_max = Math.max(...instrumentalness);
+							tempo_max = Math.max(...tempo);
+						}
+	
+						getRanges();
+	
+						//console.log(valence_min);
+	
+						var yAxis, xAxis;
+	
+						function drawAxes(attr1_min, attr1_max, attr2_min, attr2_max)
+						{
+							// on the x-axis, we're giving the range from 0 to height, so that it 
+							// draws it in an increasing order instead of decreasing:
+							xAxis = d3.scaleLinear()
+									  .domain([attr1_min, attr1_max])
+									  .range([0, width]);
+							// use the scaleLinear() function to draw the axes
+							// by giving their domains and ranges
+							// we need to give the range between 0 to the width and height
+							// of our svg so that it properly scales:
+							yAxis = d3.scaleLinear()
+									  .domain([attr2_min, attr2_max])
+									  .range([height, 0]);
+						}
+	
+						function drawCellPlot(attr1, attr2, xCoord, yCoord)
+						{
+	
+							var attr1_min, attr1_max;
+							var attr2_min, attr2_max;
+		
+							svg = d3.select("#finalproject")
+								.append("svg")
+								// changing the following x and y values will
+								// translate them!
+								// this is how you can build your matrix
+								.attr("x", xCoord)
+								.attr("y", yCoord)
+								.attr("width", width + fig_margin.left + fig_margin.right)
+								.attr("height", height + fig_margin.top + fig_margin.bottom)
+								.append("g")
+								.attr("transform", "translate(" + fig_margin.left + "," + fig_margin.top + ")")
+		
+	
+		  				   	   	   		
+							svg.append("svg")
+							   .selectAll("circle")
+							   .data(d3.zip(attr1, attr2))
+							   .enter()
+							   .append("circle")
+							   .attr("cx", d => xAxis(d[0]))
+							   .attr("cy", d => yAxis(d[1]))
+							   .attr("r", 1)
+							   .attr("fill", "red")
+							   .attr("opacity", 0.85)
+							   .attr("transform", "translate(2 2)")
+	
+							svg.append("rect")
+					   		   .attr("x", -10) // offset left of fig_margin
+					   		   .attr("y", -10) // offset top of fig_margin
+					   		   .attr("width", "100%")
+					   		   .attr("height", "100%")
+					   		   .attr("stroke", "darkolivegreen")
+					   		   .attr("fill", "yellow")
+					   		   .attr("fill-opacity", "0.2")
+					   		   .on("mouseover", function(d){
+							   	
+							   		d3.select(this).transition()
+	               					  .duration('5')
+	               					  .attr('fill', 'red')
+	               					  .attr('fill-opacity', '0.2');
+							   })
+							   .on("mouseleave", function(){
+									d3.select(this).transition()
+	               					  .duration('5')
+	               					  .attr('fill', 'yellow')
+	               					  .attr('fill-opacity', '0.2')
+								});
+	   					}
+	
+	   					var rotateFlag;	// gonna be either 0 or 1
+	
+						function drawLabel(string, x, y, rotateFlag)
+						{
+		
+							svg = d3.select("#finalproject")
+									.append("svg")
+		
+							if (rotateFlag == 0)
+							{
+								svg.append("text")
+								   .attr('x', x)
+								   .attr('y', y)
+								   .attr('text-anchor', 'middle')
+								   .style("font-family", "Arial")
+								   .style('font-size', 14)
+								   .text(string);
+							}
+							else
+							{
+								svg.append("text")
+								   .attr('x', x)
+								   .attr('y', y)
+								   .attr('text-anchor', 'middle')
+								   .style("font-family", "Arial")
+								   .style('font-size', 14)
+								   .text(string)
+								   .attr("transform", "rotate(-90 0 0)");
+							}
+							
+						}
+	
+						var bin, bins, histogram;
+	
+						function drawHistogram(attr, attr_min, attr_max, xCoord, yCoord, bin_factor, path)
+						{
+							svg = d3.select("#finalproject")
+									.append("svg")
+									.attr("x", xCoord)
+									.attr("y", yCoord)
+									.attr("width", width + fig_margin.left + fig_margin.right)
+									.attr("height", height + fig_margin.top + fig_margin.bottom)
+									.append("g")
+									.attr("transform", "translate(" + fig_margin.left + "," + fig_margin.top + ")")
+		
+							
+					   		// we are using the histogram() function for creating our histograms:
+					   		// the D3.js documentation says that this function is a wrapper around the
+					   		// d3.bin() call.
+					   		// We pass our attribute minimum and maximum values, and setting
+					   		// up a threshhold (bin range) based on that.
+		
+					   		// we are using a bin_factor, because for each and every
+							// attribute in our CSV file, there are going to be different
+							// values (and ranges), so in order to avoid accidentally
+							// messing the bin widths up, we are scaling them
+					   		// d3.range(start, stop, step)
+					   		// the step we pass will be our bin factor that decides the ranges:
+					   		var range_array = d3.range(attr_min, attr_max, bin_factor);
+		
+					   		console.log(range_array);
+					   		histogram = d3.histogram()
+										  .domain([attr_min, attr_max])
+		    							  .thresholds(range_array);
+							
+							// the histogram() call below technically creates an array of bins with our data(attr)
+		    				// and returns it into our bins variable
+		    				// each of the bins have two extra values: x0 and x1 - these are the upper bound and lower bound
+		    				// of each bin
+		    				bins = histogram(attr);
+		
+		    				console.log("bins: ", bins.length);
+		
+		    				xAxis = d3.scaleLinear()
+									  .domain([attr_min, attr_max])
+									  .range([0, width]);
+		
+							yAxis = d3.scaleLinear()
+									  .domain([0, d3.max(bins, d => d.length)])
+									  .range([height, 0]);
+		
+		
+							svg.selectAll("rect")
+		    				   .data(bins)
+		    				   .enter()
+		    				   .append("rect")
+		    				   // the histogram(attr) call will build us a structure based on our data
+		    				   // we pass the lower bound and length of each of the bins[] array
+		    				   // as the origin to draw our rect from
+		    				   .attr("x", function(d) { return xAxis(d.x0); })
+		    				   .attr("y", function(d) { return yAxis(d.length); })
+		    				   // then based on the range (the difference between upper and lower bound for each bin)
+		    				   // we chart the width:
+		    				   .attr("width", function(d) { return Math.abs(xAxis(d.x1) - xAxis(d.x0)); })
+		    				   // in order to offset the origin of the rectangle, we subtract
+		    				   // our length (which determines the height of the bar) from the height of our
+		    				   // svg element
+		    				   .attr("height", function(d) { return height - yAxis(d.length); })
+		    				   .attr("fill", "red")
+		    				   .attr("opacity", 1)
+		    				   .attr("transform", "translate(0 40) scale(1.05 0.75)");
+		
+		   					svg.append("rect")
+					   		   .attr("x", -10) // offset left of fig_margin
+					   		   .attr("y", -10) // offset top of fig_margin
+					   		   .attr("width", "100%")
+					   		   .attr("height", "100%")
+					   		   .attr("stroke", "darkolivegreen")
+					   		   .attr("fill", "yellow")
+					   		   .attr("fill-opacity", "0.1")
+					   		   .on("click", function(){
+
+							   		
+							   		
+							   });
+	
+		   					console.log(svg);
+		
+						}
+	
+						drawLabel("valence", 135, 110, 0);
+						drawLabel("valence", -265, 110, 1);
+	
+						drawHistogram(valence, valence_min, valence_max, 100, 100, 0.005, );
+	
+	   					drawAxes(valence_min, valence_max, energy_min, energy_max);
+	   					drawCellPlot(valence, energy, 300, 100);
+	
+	   					drawAxes(valence_min, valence_max, danceability_min, danceability_max);
+	   					drawCellPlot(valence, danceability, 500, 100);	
+	
+	   					drawAxes(valence_min, valence_max, speechiness_min, speechiness_max);
+	   					drawCellPlot(valence, speechiness, 700, 100);
+	
+	   					drawAxes(valence_min, valence_max, acousticness_min, acousticness_max);
+	   					drawCellPlot(valence, acousticness, 900, 100);
+	
+	   					drawAxes(valence_min, valence_max, instrumentalness_min, instrumentalness_max);
+	   					drawCellPlot(valence, instrumentalness, 1100, 100);
+	
+	   					drawAxes(valence_min, valence_max, tempo_min, tempo_max);
+	   					drawCellPlot(valence, tempo, 1300, 100);
+	
+	   					//-------------------------------------------------------------------------------//
+	
+	   					drawLabel("energy", 335, 110, 0);
+	   					drawLabel("energy", -465, 110, 1)
+	
+	   					drawAxes(energy_min, energy_max, valence_min, valence_max);
+	   					drawCellPlot(energy, valence, 100, 300);
+	
+	   					drawHistogram(energy, energy_min, energy_max, 300, 300, 0.005);
+	
+	   					drawAxes(energy_min, energy_max, danceability_min, danceability_max);
+	   					drawCellPlot(energy, danceability, 500, 300);	
+	
+	   					drawAxes(energy_min, valence_max, speechiness_min, speechiness_max);
+	   					drawCellPlot(energy, speechiness, 700, 300);
+	
+	   					drawAxes(energy_min, energy_max, acousticness_min, acousticness_max);
+	   					drawCellPlot(energy, acousticness, 900, 300);
+	
+	   					drawAxes(energy_min, energy_max, instrumentalness_min, instrumentalness_max);
+	   					drawCellPlot(energy, instrumentalness, 1100, 300);
+	
+	   					drawAxes(energy_min, energy_max, tempo_min, tempo_max);
+	   					drawCellPlot(energy, tempo, 1300, 300);
+	
+	   					//-------------------------------------------------------------------------------//
+	
+	   					drawLabel("danceability", 553, 110, 0);
+	   					drawLabel("danceability", -653, 110, 1);
+	
+	   					drawAxes(danceability_min, danceability_max, valence_min, valence_max);
+	   					drawCellPlot(danceability, valence, 100, 500);
+	
+	   					drawAxes(danceability_min, danceability_max, energy_min, energy_max);
+	   					drawCellPlot(danceability, energy, 300, 500);
+	
+	   					drawHistogram(danceability, danceability_min, danceability_max, 500, 500, 0.005);
+	
+	   					drawAxes(danceability_min, danceability_max, speechiness_min, speechiness_max);
+	   					drawCellPlot(danceability, speechiness, 700, 500);
+	
+	   					drawAxes(danceability_min, danceability_max, acousticness_min, acousticness_max);
+	   					drawCellPlot(danceability, acousticness, 900, 500);
+	
+	   					drawAxes(danceability_min, danceability_max, instrumentalness_min, instrumentalness_max);
+	   					drawCellPlot(danceability, instrumentalness, 1100, 500);
+	
+	   					drawAxes(danceability_min, danceability_max, tempo_min, tempo_max);
+	   					drawCellPlot(danceability, tempo, 1300, 500);
+	
+	   					//-------------------------------------------------------------------------------//
+	
+	   					drawLabel("speechiness", 755, 110, 0);
+	   					drawLabel("speechiness", -860, 110, 1);
+	
+	   					drawAxes(speechiness_min, speechiness_max, valence_min, valence_max);
+	   					drawCellPlot(speechiness, valence, 100, 700);
+	
+	   					drawAxes(speechiness_min, speechiness_max, energy_min, energy_max);
+	   					drawCellPlot(speechiness, energy, 300, 700);
+	
+	   					drawAxes(speechiness_min, speechiness_max, danceability_min, danceability_max);
+	   					drawCellPlot(speechiness, danceability, 500, 700);	
+	
+	   					drawHistogram(speechiness, speechiness_min, speechiness_max, 700, 700, 0.005);
+	
+	   					drawAxes(speechiness_min, speechiness_max, acousticness_min, acousticness_max);
+	   					drawCellPlot(speechiness, acousticness, 900, 700);
+	
+	   					drawAxes(speechiness_min, speechiness_max, instrumentalness_min, instrumentalness_max);
+	   					drawCellPlot(speechiness, instrumentalness, 1100, 700);
+	
+	   					drawAxes(speechiness_min, speechiness_max, tempo_min, tempo_max);
+	   					drawCellPlot(speechiness, tempo, 1300, 700);
+	
+	   					//-------------------------------------------------------------------------------//
+	
+	   					drawLabel("acousticness", 955, 110, 0);
+	   					drawLabel("acousticness", -1055, 110, 1);
+	
+	   					drawAxes(acousticness_min, acousticness_max, valence_min, valence_max);
+	   					drawCellPlot(acousticness, valence, 100, 900);
+	
+	   					drawAxes(acousticness_min, acousticness_max, energy_min, energy_max);
+	   					drawCellPlot(acousticness, energy, 300, 900);
+	
+	   					drawAxes(acousticness_min, acousticness_max, danceability_min, danceability_max);
+	   					drawCellPlot(acousticness, danceability, 500, 900);	
+	
+	   					drawAxes(acousticness_min, acousticness_max, speechiness_min, speechiness_max);
+	   					drawCellPlot(acousticness, speechiness, 700, 900);
+	
+	   					drawHistogram(acousticness, acousticness_min, acousticness_max, 900, 900, 0.009);
+	
+	   					drawAxes(acousticness_min, acousticness_max, instrumentalness_min, instrumentalness_max);
+	   					drawCellPlot(acousticness, instrumentalness, 1100, 900);
+	
+	   					drawAxes(acousticness_min, acousticness_max, tempo_min, tempo_max);
+	   					drawCellPlot(acousticness, tempo, 1300, 900);
+	
+	   					//-------------------------------------------------------------------------------//
+	
+	   					drawLabel("instrumentalness", 1170, 110, 0);
+	   					drawLabel("instrumentalness", -1240, 110, 1);
+	
+	   					drawAxes(instrumentalness_min, instrumentalness_max, valence_min, valence_max);
+	   					drawCellPlot(instrumentalness, valence, 100, 1100);
+	
+	   					drawAxes(instrumentalness_min, instrumentalness_max, energy_min, energy_max);
+	   					drawCellPlot(instrumentalness, energy, 300, 1100);
+	
+	   					drawAxes(instrumentalness_min, instrumentalness_max, danceability_min, danceability_max);
+	   					drawCellPlot(instrumentalness, danceability, 500, 1100);	
+	
+	   					drawAxes(instrumentalness_min, instrumentalness_max, speechiness_min, speechiness_max);
+	   					drawCellPlot(instrumentalness, speechiness, 700, 1100);
+	
+	   					drawAxes(instrumentalness_min, instrumentalness_max, acousticness_min, acousticness_max);
+	   					drawCellPlot(instrumentalness, acousticness, 900, 1100);
+	
+	   					drawHistogram(instrumentalness, instrumentalness_min, instrumentalness_max, 1100, 1100, 0.02);
+	
+	   					drawAxes(instrumentalness_min, instrumentalness_max, tempo_min, tempo_max);
+	   					drawCellPlot(instrumentalness, tempo, 1300, 1100);
+	
+	   					//-------------------------------------------------------------------------------//
+	
+	   					drawLabel("tempo", 1340, 110, 0);
+	   					drawLabel("tempo", -1470, 110, 1);
+	
+	   					drawAxes(tempo_min, tempo_max, valence_min, valence_max);
+	   					drawCellPlot(tempo, valence, 100, 1300);
+	
+	   					drawAxes(tempo_min, tempo_max, energy_min, energy_max);
+	   					drawCellPlot(tempo, energy, 300, 1300);
+	
+	   					drawAxes(tempo_min, tempo_max, danceability_min, danceability_max);
+	   					drawCellPlot(tempo, danceability, 500, 1300);	
+	
+	   					drawAxes(tempo_min, tempo_max, speechiness_min, speechiness_max);
+	   					drawCellPlot(tempo, speechiness, 700, 1300);
+	
+	   					drawAxes(tempo_min, tempo_max, acousticness_min, acousticness_max);
+	   					drawCellPlot(tempo, acousticness, 900, 1300);
+	
+	   					drawAxes(tempo_min, tempo_max, instrumentalness_min, instrumentalness_max);
+	   					drawCellPlot(tempo, instrumentalness, 1100, 1300);
+	
+	   					drawHistogram(tempo, tempo_min, tempo_max, 1300, 1300, 0.5);
+		
+					}
+	
+					genre_scatterplot(data);
+	
+	            })
+	    		
+    		}
+
+    		draw_scatterplot(1);
+
+
+
+
+			
+
+		</script>
+
+	</body>
+
+</html>
+	

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MXMH</title>
+    <style>
+      .container {
+        display: inline-block;
+        align-items: center;
+        transform: translate(450px);
+      }
+      .buttons 
+      {
+        transform: translate(50px, 1px);
+        color: black;
+        transition-duration: 1s;
+        border: 1px solid white;        
+        padding: 10px 15px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 12px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 5px;
+        justify-content: center;
+        margin-bottom: 20px;
+      }
+      .buttons:hover 
+      {
+          background-image: linear-gradient(to right, bisque 0%, bisque 100%);
+          color: black;
+          transition-duration: 1s;
+      }
+
+      .buttons:active
+      {
+          background-image: linear-gradient(to right, white 0%, white 100%);
+          color: black;
+          border: 1px solid darkslategray;
+          transition-duration: 0.4s;
+      }
+
+      .buttons:focus
+      {
+          background-image: linear-gradient(to right, white 0%, white 100%);
+          color: black;
+          border: 1px solid darkslategray;
+          transition-duration: 0.4s;
+      }
+
+      .buttons:visited
+      {
+          background-image: linear-gradient(to right, white 0%, white 100%);
+          color: black;
+          border: 1px solid darkslategray;
+          transition-duration: 1s;
+      }
+      #iframe {
+        width: 1600px;
+        height: 1200px;
+        border: none;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="container">
+        <button id="button1" class="buttons">Choropleth</button>
+        <button id="button2" class="buttons">Scatterplot/Radar</button>
+        <button id="button3" class="buttons">Barcharts</button>
+        <button id="button4" class="buttons">Genre Metrics</button>
+        <button id="button5" class="buttons">HeatMap</button>
+    </div>
+      <iframe id="iframe"></iframe>
+
+    <script>
+      // Get references to your buttons and iframe
+      const button1 = document.getElementById('button1');
+      const button2 = document.getElementById('button2');
+      const button3 = document.getElementById('button3');
+      const button4 = document.getElementById('button4');
+      const button5 = document.getElementById('button5');
+      const iframe = document.getElementById('iframe');
+
+      // Add event listeners to your buttons
+      button1.addEventListener('click', loadFile1);
+      button2.addEventListener('click', loadFile2);
+      button3.addEventListener('click', loadFile3);
+      button4.addEventListener('click', loadFile4);
+      button5.addEventListener('click', loadFile5);
+
+      // Define functions to load your HTML files
+      function loadFile1() {
+        iframe.src = './choropleth-anx-dep-rates.html';
+      }
+      
+      function loadFile2() {
+        iframe.src = './scatter-radar.html';
+      }
+
+      function loadFile3() {
+        iframe.src = './grouped_barcharts.html';
+      }
+
+      function loadFile4() {
+        iframe.src = './metrics-by-genre-plot.html';
+      }
+
+       function loadFile5() {
+        iframe.src = './mxmh-heatmap.html';
+      }
+
+    </script>
+  </body>
+</html>

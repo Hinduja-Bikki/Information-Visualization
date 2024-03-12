@@ -1,0 +1,222 @@
+<!--
+   In this visualization, we are creating a grouped bar chart to visualize the relationship between the favorite music genre and the music effects (Improve, No effect, Worsen) on mental conditions (Anxiety, Depression, Insomnia, OCD).
+  -->
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<style>
+  .buttonClass 
+          { 
+              transform: translate(580px, 1px);
+              color: black;
+              transition-duration: 1s;
+              border: 1px solid white;
+              padding: 10px 15px;
+              text-align: center;
+              text-decoration: none;
+              display: inline-block;
+              font-size: 12px;
+              margin: 4px 2px;
+              cursor: pointer;
+              border-radius: 5px;
+              display: inline-block;
+              vertical-align: top;
+              left: 120px;
+
+          }
+
+          .buttonClass:hover 
+          {
+              background-image: linear-gradient(to right, bisque 0%, bisque 100%);
+              color: black;
+              transition-duration: 1s;
+          }
+    
+          .buttonLabel 
+          {
+              background-image: linear-gradient(to right, #85adad 0%, #85adad 100%);
+              color: white;
+              pointer-events: none;
+          }
+    
+          .buttonClass:active
+          {
+            background-image: linear-gradient(to right, white 0%, white 100%);
+              color: black;
+              border: 1px solid darkslategray;
+              transition-duration: 0.4s;
+          }
+    
+          .buttonClass:focus
+          {
+            background-image: linear-gradient(to right, white 0%, white 100%);
+              color: black;
+              border: 1px solid darkslategray;
+              transition-duration: 0.4s;
+          }
+    
+          .buttonClass:visited
+          {
+              background-image: linear-gradient(to right, white 0%, white 100%);
+              color: black;
+              border: 1px solid darkslategray;
+              transition-duration: 1s;
+          }
+</style>
+
+<!-- Load d3.js -->
+<script src="https://d3js.org/d3.v6.js"></script>
+
+<button type = "button" class = "buttonClass" onclick = "d3.csv('./data/change_data.csv').then(function(data) { stackedBarCharts(svg, data, 'Anxiety', 130, 25, -10);});">Anxiety</button>
+<button type = "button" class = "buttonClass" onclick = "d3.csv('./data/change_data.csv').then(function(data) { stackedBarCharts(svg, data, 'Depression', 75, 25, -10);});">Depression</button>
+<button type = "button" class = "buttonClass" onclick = "d3.csv('./data/change_data.csv').then(function(data) { stackedBarCharts(svg, data, 'Insomnia', 80, 25, -10);})">Insomnia</button>
+<button type = "button" class = "buttonClass" onclick = "d3.csv('./data/change_data.csv').then(function(data) { stackedBarCharts(svg, data, 'OCD', 60, 25, -10);})">OCD</button>
+
+ <svg id = "stacked_chart" width = "1000" height = "1000" transform = "translate(210 50)">
+    </svg>
+
+<script>
+
+const svg = d3.select("#stacked_chart")
+  .append("svg")
+    .attr("width", 500) // multiply by 4 for 4 charts
+    .attr("height", 500)
+  .selectAll('g')
+  .data(["Anxiety"])
+  .enter()
+  .append("g");
+
+
+
+  d3.csv("./data/change_data.csv").then(function(data) { 
+    stackedBarCharts(svg, data, "Anxiety", 130, 25, -10);
+  });
+
+
+    /* In this function, we are creating a grouped bar chart to visualize the relationship between the favorite music genre and the music effects (Improve, No effect, Worsen) on mental conditions (Anxiety, Depression, Insomnia, OCD).*/
+
+    function stackedBarCharts(svg, data, mentalCondition, val, X_T, Y_T) {
+
+      svg.selectAll("*").remove();
+
+        const subgroups = ['Improve', 'No effect', 'Worsen'];
+        svg.attr("transform", "translate(" + X_T + ", " + Y_T +")");
+        const countsByGenre = {};
+
+          data.forEach(function(d) {
+                        if (!countsByGenre[d.Favgenre]) {
+                            countsByGenre[d.Favgenre] = {
+                                'Improve': 0,
+                                'No effect': 0,
+                                'Worsen': 0
+                            };
+                        }
+
+                        if (parseInt(d[mentalCondition]) > 0)
+                           countsByGenre[d.Favgenre][d.Musiceffects]++; 
+                    });
+         
+
+         const data1 = [];
+
+        for (const genre in countsByGenre) {
+          const counts = countsByGenre[genre];
+          const obj = { group: genre };
+          for (const effect in counts) {
+            obj[effect] = counts[effect];
+          }
+          data1.push(obj);
+        }   
+
+    
+      const genres = Object.keys(countsByGenre);
+
+      const x = d3.scaleBand()
+                  .domain(genres)
+                  .range([0, 400])
+                  .padding([0.4])
+
+
+      svg.append("g")
+          .attr("transform", `translate(0, 400)`)
+          .call(d3.axisBottom(x).tickSize(0))
+          .selectAll("text")
+        .attr("transform", "translate(-12 10) rotate(-90)")
+        .style("text-anchor", "end");
+
+
+      const y = d3.scaleLinear()
+                  .domain([0, val])
+                  .range([400, 0]);
+
+
+      svg.append("g")
+      .call(d3.axisLeft(y));
+
+      const xSubgroup = d3.scaleBand()
+      .domain(subgroups)
+      .range([0, x.bandwidth()])
+      .paddingOuter(0.1)
+      .paddingInner(0.8);
+
+      const color = d3.scaleOrdinal()
+      .domain(subgroups)
+      .range(['#fa3951', '#57d89d', '#f6ed76'])
+
+      svg.append("g")
+      .selectAll("g")
+      .data(data1)
+      .join("g")
+      .attr("transform", function(d) {
+        return `translate(${x(d.group)}, 0)`;
+      })
+      .selectAll("rect")
+      .data(function(d) {
+          return subgroups.map(function(key) {
+          return {
+              key: key,
+              value: countsByGenre[d.group][key]
+          };
+          });
+      })
+      .join("rect")
+      .attr("x",  d => xSubgroup(d.key))
+      .attr("y", d => y(d.value))
+      .attr("width", xSubgroup.bandwidth() * 2.75)
+      .attr("height", d => 400 - y(d.value))
+      .attr("fill", d => color(d.key)) 
+
+      // Create a separate SVG group for the legend
+      const legend = svg.append("g")
+                  .attr("class", "legend")
+                  .attr("transform", `translate(350, 50)`);
+
+      // Define the legend data
+      const legendData = [
+        { label: "Improve(s)", color: "#fa3951" },
+        { label: "Worsen(s)", color: "#57d89d" },
+        { label: "No effect(s)", color: "#f6ed76" },
+      ];
+      
+      // Create a rectangle and text element for each condition in the legend
+      legend.selectAll("rect")
+            .data(legendData)
+            .enter().append("rect")
+            .attr("x", 0)
+            .attr("y", (d, i) => i * 25)
+            .attr("width", 20)
+            .attr("height", 20)
+            .attr("fill", d => d.color);
+      
+      legend.selectAll("text")
+            .data(legendData)
+            .enter()
+            .append("text")
+            .attr("x", 30)
+            .attr("y", (d, i) => i * 25 + 15)
+            .text(d => d.label);
+      
+
+    }
+
+</script>

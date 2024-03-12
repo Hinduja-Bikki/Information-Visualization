@@ -1,0 +1,737 @@
+Favgenre,Anxiety,Depression,Insomnia,OCD,Musiceffects
+Latin,3,0,1,0,Improve
+Rock,7,2,2,1,Improve
+Video game music,7,7,10,2,No effect
+Jazz,9,7,3,3,Improve
+R&B,7,2,5,9,Improve
+Jazz,8,8,7,7,Improve
+Video game music,4,8,6,0,Improve
+K pop,5,3,5,3,Improve
+Rock,2,0,0,0,Improve
+R&B,2,2,5,1,Improve
+Country,7,7,4,7,No effect
+EDM,1,0,0,1,Improve
+Hip hop,9,3,2,7,Improve
+Country,2,1,2,0,Improve
+Jazz,6,4,7,0,Improve
+Pop,7,5,4,1,Worsen
+Hip hop,8,8,4,3,Improve
+Hip hop,5,7,10,0,Improve
+Rap,7,5,0,3,Improve
+Hip hop,7,3,0,2,Improve
+Hip hop,6,9,3,0,Improve
+Rap,10,10,2,4,Improve
+R&B,6,7,5,4,Improve
+Pop,3,3,8,6,No effect
+Rock,10,6,8,10,Improve
+Pop,7,4,2,5,Improve
+Rock,8,6,10,5,Improve
+Pop,3,2,1,2,Improve
+Pop,6,6,4,5,Improve
+Pop,8,2,1,5,Improve
+Rock,7,7,2,0,Improve
+Classical,4,4,4,3,No effect
+Metal,9,8,2,3,Improve
+Rock,5,6,6,1,Improve
+Classical,0,0,0,0,No effect
+Pop,3,2,1,1,Improve
+Pop,6,8,0,2,Improve
+Pop,2,0,4,0,No effect
+Rock,9,8,1,0,No effect
+EDM,7,2,8,6,Improve
+Video game music,4,2,3,4,Improve
+Rock,7,6,5,0,Improve
+Video game music,3,2,10,0,No effect
+Classical,6,6,8,2,Improve
+Metal,1,0,8,2,No effect
+Folk,7,3,1,5,Improve
+Classical,8,9,3,0,No effect
+Rock,9,6,4,3,Improve
+Metal,7,9,5,0,Improve
+Pop,7,4,2,4,No effect
+EDM,0,0,0,0,Improve
+K pop,7,8,7,5,Improve
+Rap,10,6,3,10,No effect
+Pop,3,7,5,5,No effect
+Rock,8,7,4,3,Improve
+Classical,0,0,1,3,Improve
+Rock,8,6,2,10,No effect
+Rock,9,0,10,0,No effect
+Folk,6,4,2,3,Improve
+Video game music,7,0,0,2,Improve
+K pop,10,1,0,0,Improve
+Rock,8,7,0,5,Improve
+Rock,3,2,6,7,Improve
+Metal,5,5,3,1,No effect
+Rock,10,10,3,1,Worsen
+Metal,5,4,10,2,Improve
+Rock,0,0,8,0,No effect
+Hip hop,8,8,5,10,Improve
+Metal,10,7,8,0,Improve
+Rock,7,3,1,1,Improve
+Rock,8,7,4,0,Improve
+Rock,10,2,0,5,No effect
+Rock,9,8,1,2,Improve
+Hip hop,6,3,1,1,Improve
+Hip hop,7,7,0,1,No effect
+Jazz,7,7,8,4,Improve
+Metal,4,1,0,0,Improve
+R&B,7,2,1,5,Improve
+EDM,9,0,5,10,Improve
+Hip hop,2,7,1,1,Improve
+Rock,10,8,7,0,Improve
+Jazz,3,0,0,0,Improve
+K pop,7,8,5,1,No effect
+Rock,2,1,0,0,Improve
+R&B,5,4,0,1,Improve
+Rock,9,10,6,10,No effect
+Jazz,2,0,0,0,Improve
+Metal,5,2,5,1,Improve
+R&B,3,2,0,0,No effect
+Hip hop,2,0,7,0,No effect
+Metal,7,6,6,2,No effect
+Video game music,5,4,8,3,No effect
+Classical,4,6,5,3,Improve
+Rock,6,2,3,1,Improve
+Video game music,8,2,1,6,Improve
+Metal,9,6,0,6,Improve
+EDM,0,3,7,0,Improve
+Rock,8,9,6,2,Improve
+Metal,4,1,1,1,Improve
+Rock,8,7,5,0,Improve
+Metal,3,4,6,1,Improve
+Classical,1,1,3,1,Improve
+Metal,10,8,6,7,No effect
+Rock,6,6,2,0,No effect
+Rock,6,7,0,0,Improve
+Metal,8,4,10,0,No effect
+Pop,9,7,6,2,No effect
+Pop,7,4,6,5,Improve
+Metal,6,7,0,0,No effect
+Metal,10,0,10,10,Improve
+Metal,6,3,0,1,Improve
+Pop,7,5,5,3,Improve
+Pop,7,10,5,0,Improve
+Rock,8,6,0,0,Improve
+K pop,4,3,0,0,Improve
+Hip hop,7,6,7,5,Improve
+Metal,7,3,2,3,Improve
+EDM,2,7,5,0,Improve
+Rock,7,8,6,5,Improve
+Folk,4,7,1,0,Improve
+Rock,7,8,5,1,No effect
+Rock,5,2,8,6,Improve
+Hip hop,10,7,4,2,Improve
+Rock,6,5,0,0,No effect
+Jazz,7,2,3,1,Improve
+EDM,4,7,7,3,Improve
+Pop,4,5,6,5,Improve
+Rock,7,10,5,6,Worsen
+Metal,6,4,5,0,Improve
+Rock,4,1,3,1,No effect
+Video game music,6,6,1,2,Improve
+Rock,10,8,7,1,Improve
+Pop,10,8,2,8,Improve
+EDM,3,6,2,0,No effect
+Rock,8,9,2,0,Improve
+Video game music,8,3,8,7,Improve
+Classical,3,3,1,2,Improve
+Pop,6,5,2,0,Improve
+Pop,0,0,4,0,No effect
+Pop,6,5,0,2,Improve
+Lofi,3,8,0,0,Improve
+Rap,1,8,0,0,No effect
+Metal,5,6,6,3,Improve
+Pop,0,0,0,0,Improve
+EDM,0,8,0,0,Improve
+Metal,3,7,0,0,Improve
+Jazz,8,8,8,5,Improve
+Jazz,5,2,3,4,Improve
+Folk,8,8,3,0,Improve
+EDM,6,8,8,0,Improve
+Pop,6,8,6,0,Worsen
+Rock,6,6,7,5,Improve
+Rock,9,10,3,0,No effect
+Pop,7,7,5,0,Improve
+Rock,10,7,2,8,No effect
+Metal,1,3,0,6,No effect
+Pop,5,3,2,1,Improve
+Rock,6,8,1,6,Improve
+Pop,7,2,0,7,Improve
+Metal,6,9,9,0,Improve
+R&B,1,1,4,1,No effect
+K pop,0,2,0,0,Improve
+EDM,8,8,2,0,Improve
+Metal,3,3,7,0,No effect
+Metal,8,8,3,0,Improve
+Metal,6,4,0,3,No effect
+Metal,1,0,0,0,Improve
+Rock,5,5,4,4,Improve
+K pop,8,9,6,0,Improve
+Rock,8,8,7,6,Improve
+Gospel,3,0,2,0,Improve
+Metal,0,5,1,0,No effect
+Pop,6,3,0,0,Improve
+Metal,1,7,5,1,Improve
+Video game music,4,2,1,1,No effect
+R&B,5,6,0,1,No effect
+Rock,1,0,0,0,No effect
+Pop,8,6,5,2,Improve
+Folk,9,4,0,3,Improve
+Rock,4,6,6,4,Improve
+Rock,7,3,1,5,Improve
+Pop,10,3,1,0,No effect
+Rock,8,8,3,0,Improve
+R&B,7,6,5,4,Improve
+K pop,7,2,3,5,Improve
+Pop,10,3.5,5,10,Improve
+Pop,7,5,1,2,Improve
+Classical,6,8,9,5,Improve
+Rock,2,9,2,1,No effect
+Rock,7,4,10,2,Improve
+Rock,7,5,6,0,Improve
+R&B,6,1,0,0,Improve
+Video game music,3,6,1,1,Improve
+R&B,9,10,3,0,Improve
+Rock,8,5,8,9,Improve
+Pop,8,7,7,3,Improve
+Rock,9,9,9,3,No effect
+Country,9,8,9,7,Improve
+Rock,9,3,7,8,Improve
+Rock,10,8,6,2,Improve
+Rock,9,6,3,0,Improve
+Pop,7,7,8,3,Improve
+Rock,9,10,4,0,Improve
+Folk,9,9,8,2,Improve
+Rock,9,10,3,9,Improve
+Metal,10,9,8,8,Improve
+Classical,6,5,6,8,Improve
+R&B,8,6,10,3,Improve
+Metal,8,3,6,4,Improve
+Rock,4,2,1,3,Improve
+Pop,2,1,1,1,No effect
+Rock,10,10,7,3,Improve
+Rap,8,9,0,0,Improve
+Pop,4,9,6,2,No effect
+Rock,4,2,0,0,Improve
+Rock,9,2,7,7,Improve
+Metal,8,6,7,5,Improve
+Folk,6,5,4,2,Improve
+Rock,8,5,2,3,Improve
+Video game music,7,6,6,1,No effect
+Rock,10,2,0,0,Improve
+K pop,6,0,0,0,Improve
+Pop,2,0,1,0,Improve
+K pop,3,7,5,2,Improve
+Pop,9,0,2,0,Improve
+Pop,5,4,1,1,Improve
+Folk,8,4,0,1,Improve
+Country,8,10,2,0,Improve
+Metal,3,6,2,1,No effect
+Rock,4,4,2,1,Improve
+Rock,7,5,2,6,Improve
+Rock,3,2,0,0,No effect
+Country,9,9,5,1,Improve
+Rock,3,10,4,1,No effect
+Folk,9,0,5,0,No effect
+Metal,7,6,6,5,Improve
+Folk,0,9,4,0,Improve
+Pop,2,2,2,1,No effect
+Metal,6,9,2,1,Improve
+EDM,6,4,1,0,Improve
+K pop,8,9,4,0,Improve
+Rock,6,7,4,3,Improve
+Classical,7,2,2,0,Improve
+EDM,8,6,5,6,No effect
+Rock,3,10,0,0,Worsen
+Pop,9,4,9,7,Improve
+Classical,7,9,2,8,Worsen
+EDM,10,3,1,4,Improve
+Metal,0,0,0,1,No effect
+EDM,9,6,1,7,No effect
+Lofi,7,1,3,5,Improve
+EDM,9,7,5,7,Improve
+Rap,3,1,2,7,Improve
+Hip hop,6,6,8,0,Improve
+Rock,10,6,0,4,Improve
+Video game music,6,3,1,1,Improve
+Video game music,3,3,0,7,No effect
+Metal,9,10,2,2,No effect
+Pop,7,5,0,2,No effect
+Classical,3,0,4,4,No effect
+Rock,9,9,6,4,Improve
+Metal,5,7,7,2,Improve
+Country,0,8,0,5,Improve
+Country,8,4,3,4,Improve
+Country,7,2,0,7,No effect
+Pop,9,9,6,9,No effect
+Classical,5,7,5,4,Improve
+Pop,5,1,0,0,Improve
+Folk,4,1,3,0,Improve
+Pop,3,5,3,0,Improve
+Rock,2,2,0,6,Improve
+EDM,0,1,3,5,Improve
+Metal,7,8,6,2,Improve
+Video game music,6,4,8,8,Improve
+Rock,5,6,8,2,Improve
+Video game music,6,6,2,6,No effect
+Hip hop,8,9,3,4,Improve
+Video game music,8,4,3,3,Worsen
+Video game music,8,6,5,7,Improve
+Metal,8,8,7,7,Improve
+Video game music,5,2,5,0,Improve
+Rock,6,8,4,2,No effect
+Rock,7,5,2,1,No effect
+Jazz,8,8,7,1,Improve
+Rock,10,2,0,0,Improve
+Pop,8,7,7,5,Improve
+Rock,8,8,8,6,Improve
+Pop,8,10,9,2,Improve
+Rock,6,1,8,4,No effect
+Rock,0,4,4,0,Improve
+Rock,8,10,10,8,No effect
+Pop,3,2,0,1,No effect
+Metal,5,3,3,1,Improve
+Rock,8,9,6,1,Improve
+Jazz,10,3,0,10,No effect
+Metal,6,7,8,2,Improve
+Metal,7,4,7,0,Improve
+Rock,9,8,6,2,Improve
+Rock,8,0,0,0,Improve
+Country,8,9,2,5,No effect
+Metal,7,2,3,0,Improve
+Rock,10,10,4,0,Improve
+Hip hop,8,8,3,3,Improve
+Metal,8,7,7,4,Improve
+Rock,8,7,1,2,Improve
+Pop,6,5,10,2,No effect
+Pop,7,6,0,4,Improve
+Pop,7,4,0,0,Improve
+Pop,8,7,2,10,No effect
+EDM,4,4,4,0,Improve
+Folk,0,0,2,0,No effect
+EDM,6,4,0,1,Improve
+Rock,4,7,0,0,Improve
+Rock,8,4,3,0,No effect
+Country,5,5,3,3,Improve
+Rock,0,8,0,0,Improve
+Rock,7,4,6,1,Improve
+Rock,8,7,7,3,No effect
+Metal,9,8,6,2,Improve
+Rock,8,6,4,0,Improve
+Rap,7,2,0,8,Improve
+Rock,6,7,7,7,No effect
+Rock,7,6,4,2,Improve
+Pop,1,1,1,0,Improve
+Pop,1,1,3,0,Improve
+Pop,2,7,1,2,Improve
+Pop,6,2,3,1,No effect
+Pop,7,7,3,2,No effect
+Video game music,8,7,0,3,No effect
+Rock,8,3,5,2,Improve
+EDM,5,4,2,0,Improve
+Lofi,7,10,10,1,Improve
+Country,7,6,8,4,Improve
+Rock,8,7,0,9,Improve
+Rock,10,7,3,3,No effect
+Country,6,5,5,3,Improve
+Rock,8,7,6,8,No effect
+Video game music,10,7,7,3,Worsen
+EDM,10,10,5,7,Improve
+Folk,8,2,2,8,No effect
+Hip hop,3,7,4,0,Improve
+Pop,9,7,5,5,Improve
+Video game music,5,3,0,0,Improve
+Rock,10,7,0,10,Improve
+Folk,8,0,0,3,Improve
+K pop,6,0,3,0,Improve
+Rock,7,9,4,6,Improve
+Jazz,3,2,5,6,Improve
+Classical,4,2,0,0,Improve
+EDM,4,2,0,0,Improve
+Rock,5,3,1,0,No effect
+K pop,4,2,2,1,Improve
+Rap,4,0,6,5,No effect
+Pop,7,6,3,1,Improve
+Lofi,7,8,6,2,Improve
+Video game music,3,4,1,1,Improve
+Jazz,9,7,2,1,Improve
+EDM,10,9,3,2,Improve
+Metal,9,9,7,3,Improve
+EDM,8,10,9,2,Improve
+Metal,8,9,6,4,Improve
+Metal,5,6,9,9,Improve
+Metal,9,3,7,2,Improve
+Hip hop,3,2,1,6,Improve
+Folk,7,7,4,0,Improve
+Rock,7,9,1,2,Improve
+Rock,5,1,9,1,Improve
+Pop,3,3,0,0,Improve
+Classical,8,7,5,4,Improve
+Pop,8,2,1,1,Improve
+Metal,4,0,0,0,Improve
+Classical,9,6,1,1,Improve
+Hip hop,10,7,2,0,Improve
+Rock,8,7,7,4,Improve
+Metal,1,0,0,0,Improve
+Rock,5,7,1,4,Improve
+Rock,7,6,9,2,Improve
+Lofi,8,8,2,2,Improve
+Rock,2,2,8,0,No effect
+Pop,6,0,0,2,Improve
+Metal,2,0,1,0,Improve
+Rock,6,2,6,7,No effect
+Pop,6,1,0,5,Improve
+Classical,7,6,4,0,Improve
+Classical,0,0,3,0,Improve
+Classical,9,7,10,6,No effect
+Video game music,10,0,0,0,No effect
+Pop,6,6,3,0,Improve
+Metal,4,3,1,6,Improve
+Pop,6,2,2,1,No effect
+Classical,2,2,3,2,Improve
+K pop,7,4,5,6,Improve
+Classical,7,5,3,2,Improve
+Classical,8,5,10,3,Improve
+Country,7,5,6,5,Improve
+Classical,6,8,8,2,Improve
+Classical,1,2,4,3,Improve
+Rap,3,2,0,2,Improve
+Folk,6,7,7,4,Improve
+Classical,6,7,2,0,No effect
+Pop,9,8,4,8,Improve
+Rock,7,7,2,1,Improve
+Rock,1,0,1,0,Improve
+Rap,4,3,4,5,Improve
+R&B,2,0,0,0,Improve
+Rock,0,5,7,0,No effect
+Pop,8,7,7,0,Improve
+Hip hop,5,10,8,0,No effect
+Classical,8,7,9,2,Improve
+Classical,9,6,8,5,Improve
+Rock,2,2,7,0,No effect
+Classical,7,8,6,2,Improve
+EDM,10,10,8,2,No effect
+Country,8,5,2,3,Improve
+Classical,7,8,2,5,Improve
+Classical,1,1,2,0,Improve
+R&B,9,10,10,3,No effect
+Jazz,9,4,4,4,Improve
+Classical,8,2,4,0,No effect
+Metal,1,1,5,1,Improve
+EDM,10,9,9,8,Improve
+Classical,3,0,2,3,Improve
+Video game music,4,0,4,0,Improve
+Metal,2,3,5,2,Improve
+Classical,2,3,3,0,Improve
+Rock,8,4,3,0,Improve
+K pop,10,10,10,7,Improve
+Classical,8,8,9,3,Improve
+Rock,0,1,0,2,Improve
+R&B,5,4,0,1,Improve
+Pop,7.5,5,7,8.5,Improve
+Rap,3,3,0,0,Improve
+Classical,7,5,3,1,Improve
+Classical,8,0,1,6,Improve
+Hip hop,6,4,1,1,Improve
+K pop,8,8,7,10,No effect
+R&B,10,8,9,5,Improve
+Country,3,0,2,0,Improve
+Video game music,5,5,7,1,Worsen
+Hip hop,7,7,6,5,Improve
+EDM,7,4,6,3,Improve
+Folk,3,3,1,0,Improve
+Rap,4,0,0,2,Worsen
+Rock,3,0,6,9,Improve
+Rock,5,1,6,0,Improve
+Metal,10,6,8,0,Improve
+Classical,7,5,1,2,No effect
+Rock,7,7,0,4,No effect
+Pop,6,0,0,0,Improve
+Rock,6,2,3,2,Improve
+Lofi,7,6,7,9,Improve
+Rock,5,7,7,0,No effect
+Pop,7,6,4,3,Improve
+Rock,2,2,2,0,Improve
+Video game music,9,5,0,7,Improve
+Rock,3,7,8,0,Worsen
+Pop,4,5,9,1,Improve
+Rock,1,0,7,0,Improve
+Metal,3,2,0,2,No effect
+Metal,1,6,1,2,Improve
+Hip hop,8,10,4,0,No effect
+Video game music,8,10,10,0,No effect
+Metal,3,0,8,1,No effect
+Hip hop,3,4,1,0,Improve
+Rock,2,1,2,2,Improve
+Rock,0,0,0,0,No effect
+Video game music,8,8,5,0,Improve
+Country,1,1,1,0,No effect
+Folk,8,7,6,2,Improve
+Metal,6,5,4,0,No effect
+Rock,5,4,6,2,Improve
+Rock,3,1,0,2,No effect
+Country,4,8,2,2,Improve
+Rock,5,6,3,1,Improve
+Classical,0,0,2,1,Improve
+Rock,7,6,7,4,Improve
+Country,8,5,6,1,Improve
+Rock,4,4,2,0,Improve
+Pop,9,8,10,9,Improve
+EDM,5,5,7,0,Improve
+Hip hop,4,6,8,1,Improve
+Lofi,4,8,5,0,Improve
+Lofi,9,10,6,7,Improve
+Classical,3,2,2,2,Improve
+Rock,6,2,2,1,Improve
+Rock,2,0,3,0,No effect
+Metal,10,8,0,4,Improve
+K pop,4,4,2,2,Improve
+Pop,7,8,6,2,Improve
+Pop,7,6,5,5,Improve
+Gospel,1,0,0,0,Improve
+Gospel,6,2,8,0,Improve
+Video game music,4,5,7,0,No effect
+Hip hop,10,7,0,0,Improve
+Pop,4,2,1,0,Improve
+Hip hop,7,6,2,3,Improve
+Lofi,3,2,8,0,Improve
+Hip hop,10,7,4,3,Improve
+K pop,4,0,0,0,No effect
+Rock,7,7,0,0,Improve
+EDM,6,7,4,1,Improve
+Metal,7,6,2,7,Improve
+Pop,6,5,8,0,Improve
+Rock,10,10,2,3,Improve
+K pop,7,6,5,1,Improve
+Video game music,3,0,0,0,Improve
+Rock,8,2,1,0,No effect
+Rap,7,6,6,5,Improve
+Rock,3,2,5,0,No effect
+Metal,8,2,1,0,Improve
+Rock,7,7,2,4,Improve
+Country,5,1,1,1,Improve
+Rock,1,2,1,0,No effect
+Rock,2,1,2,2,Improve
+Classical,5,2,4,0,Improve
+Pop,7,2,1,0,Improve
+Folk,10,10,7,8,Improve
+Pop,7,2,1,6,Improve
+Pop,6,4,1,0,Improve
+EDM,5,9,6,1,Improve
+Video game music,7,5,7,0,Improve
+Jazz,7,6,7,4,Improve
+Rock,0,0,0,0,Improve
+R&B,3,5,0,2,No effect
+Metal,8,8,5,2,Improve
+EDM,8,7,10,6,Improve
+Rock,2,4,5,2,Improve
+Classical,7,3,9,2,Improve
+Pop,8,7,4,4,Improve
+Jazz,0,0,0,5,No effect
+Pop,8,6,9,8,Improve
+Video game music,4,2,3,2,Improve
+Rock,3,2,2,2,Improve
+Gospel,6,4,10,0,Improve
+Pop,8,8,10,0,Improve
+Pop,5,5,5,5,Improve
+Rock,10,8,6,2,No effect
+Rock,0,0,7,0,Improve
+Rock,8,8,10,0,Improve
+Rock,8,2,0,0,No effect
+Metal,7,8,4,10,Improve
+Country,0,2,0,1,Improve
+Pop,3,5,4,0,Improve
+Pop,5,2,3,1,Improve
+Folk,6,1,0,0,Improve
+Rap,6,3,4,2,Improve
+Rock,5,6,8,2,Improve
+K pop,8,4,7,5,Improve
+Pop,1,1,2,3,Improve
+Rock,8,3,1,3,Improve
+Rap,3,3,0,0,Improve
+Classical,0,0,0,0,No effect
+Pop,5,4,2,0,No effect
+R&B,2,4,0,0,Improve
+Video game music,4,6,0,2,Improve
+Pop,5,7,2,0,Improve
+Rock,4,0,7,0,No effect
+Pop,10,8,6,2,No effect
+R&B,3,3,1,0,Improve
+Rock,8,7,2,1,Improve
+R&B,3,3,0,3,Improve
+K pop,4,5,2,5,Improve
+Folk,10,10,8,10,Improve
+K pop,10,2,7,8,Improve
+Metal,9,6,8,5,Improve
+R&B,6,4,1,6,Improve
+Pop,3,4,6,8,Improve
+Gospel,10,10,10,0,Improve
+Video game music,4,8,8,4,No effect
+R&B,3,0,0,0,Improve
+R&B,1,0,0,0,Improve
+Classical,5,6,7,7,No effect
+Video game music,7,0,3,1,No effect
+Pop,10,8,8,9,Improve
+R&B,3,0,3,4,Improve
+EDM,1,0,0,1,No effect
+Pop,6,6,0,0,Improve
+Video game music,4,3,4,0,Improve
+Pop,6,4,0,0,Improve
+Rock,2,6,3,0,Worsen
+Pop,8,3,3,3,Improve
+Rock,8,10,7,3,No effect
+Rock,1,0,0,1,Improve
+Rock,8,6,6,8,Improve
+Pop,6,3,1,7,Improve
+Rap,2,0,3,0,Improve
+Metal,0,0,0,0,No effect
+Rock,10,10,6,6,Improve
+Rock,3,0,0,1,Improve
+Rock,7,9,10,0,Improve
+Classical,8,7,6,2,Improve
+R&B,2,0,10,10,Improve
+R&B,10,7,9,3,No effect
+Pop,6,0,0,0,Improve
+Gospel,3,0,2,2,Improve
+Lofi,6,5,9,8,Improve
+Rock,7,6,5,8,Improve
+Metal,10,7,8,6,Improve
+Latin,0,3,9,5,No effect
+EDM,0,2,1,5,Improve
+R&B,2,0,0,0,No effect
+Jazz,2,2,4,0,No effect
+Pop,5,6,3,4,No effect
+Rock,0,0,1,0,No effect
+Hip hop,5,4,3,7,Improve
+K pop,2,7,0,0,Improve
+Video game music,0,6,0,4,Improve
+Classical,0,0,0,0,Improve
+Rap,7,5,1,3,Improve
+Folk,7,5,3,1,No effect
+Rock,3,3,1,8,No effect
+Rock,7,10,4,7,Worsen
+Pop,3,2,3,0,Improve
+Rock,5,1,1,9,Improve
+Rock,8,9,4,10,Improve
+Metal,4,8,0,0,Improve
+Rock,7,9,7,0,Improve
+Rock,1,5,6,4,No effect
+Jazz,3,2,1,0,No effect
+Jazz,6,8,0,0,Improve
+Rock,6,3,6,0,Improve
+Metal,7,4,8,0,Improve
+Metal,2,6,9,1,No effect
+Hip hop,8,5,3,8,Improve
+Rock,3,3,0,0,Improve
+Rap,7,5,3,3,Improve
+Rock,4,8,2,3,Improve
+Classical,3,0,0,5,Improve
+Metal,10,7,3,2,Improve
+Rock,10,4,8,0,Improve
+Video game music,2,2,0,0,Improve
+Folk,8,7,7,3,Improve
+Rock,10,5,2,8,Improve
+Rock,9,10,10,6,No effect
+Metal,5,2,1,6,Improve
+Classical,4,8,9,1,Improve
+Metal,7,8,5,3,Improve
+EDM,2,2,0,3,No effect
+K pop,10,3,0,4,Improve
+Metal,10,10,10,9,Improve
+Folk,3,7,7,4,No effect
+EDM,7,5,7,7,Improve
+Metal,7,4,8,8,Improve
+Classical,7,9,4,5,Improve
+EDM,4,7,1,3,Improve
+Metal,5,9,9,6,Improve
+Pop,5,4,10,7,No effect
+Pop,7,2,0,1,Improve
+Folk,8,6,0,2,Improve
+Metal,1,3,10,0,No effect
+Rock,8,10,10,2,Worsen
+Folk,4,7,6,0,No effect
+Pop,9,6,3,0,No effect
+Rock,10,7,4,4,Improve
+Rock,1,2,2,0,No effect
+Rock,7,10,0,8,Improve
+Pop,10,2,1,10,Worsen
+Rock,2,1,2,2,Improve
+R&B,3,10,0,0,No effect
+Rock,7,10,2,0,Improve
+Metal,4,2,0,0,Improve
+R&B,4,2,5,3,Improve
+Metal,6,8,7,0,Improve
+Folk,8,6,4,0,Improve
+Rock,2,2,0,0,No effect
+Rock,8,7,9,3,Improve
+Rock,4,3,5,0,No effect
+Rock,6,1,0,4,No effect
+Pop,6,6,3,6,Improve
+K pop,8,7,1,1,No effect
+Pop,5,3,4,1,Improve
+Video game music,6,2,4,3,Improve
+Metal,5,6,6,0,Improve
+Jazz,6,10,8,1,Improve
+Rock,7,3,9,7,Improve
+Classical,4,6,0,0,No effect
+Folk,9,4,0,1,Improve
+Rap,9,7,7,5,Improve
+Rock,5,10,2,7,No effect
+Country,1,0,1,0,Improve
+R&B,8,7,2,6,Improve
+K pop,5,1,4,0,Improve
+Latin,10,6,0,0,Improve
+R&B,7,5,5,5,Improve
+Hip hop,3,1,0,3,Improve
+Rap,5,8,7,4,Improve
+Classical,2,0,0,5,No effect
+Classical,7,0,0,0,No effect
+R&B,8,0,0,2,No effect
+R&B,4,1,1,0,Improve
+Hip hop,3,8,0,2,Improve
+Hip hop,7,0,2,2,Improve
+Video game music,10,8,10,0,Improve
+Pop,7,1,1,1,Improve
+Pop,5,9,1,7,No effect
+Rap,0,0,0,0,No effect
+R&B,10,6,3,8,Improve
+Rock,7,3.5,3.5,5.5,Improve
+Country,2,0,0,2,Improve
+Metal,10,10,10,8,Improve
+Pop,8,9,6,5,Worsen
+Rock,9,7,8,4,Improve
+Folk,6,4,5,0,Improve
+Folk,8,5,9,4,Improve
+Metal,3,7,0,0,Improve
+Pop,9,1,0,9,Improve
+Rock,8,6,1,4,Improve
+Country,4,1,1,6,Improve
+Video game music,6,5,3,1,No effect
+Hip hop,7,8,6,5,Improve
+Rock,8,9,5,10,Improve
+Metal,8,6,7,0,Improve
+Rock,10,5,2,0,Improve
+Pop,5,2,4,7,No effect
+Country,9,3,2,0,No effect
+Pop,4,6,3,4,Improve
+Metal,9,8,4,0,Improve
+Rock,5,7,10,2,No effect
+Metal,8,3,9,2,No effect
+Video game music,10,10,6,8,Improve
+Hip hop,7,7,5,5,Improve
+Pop,10,8,1,0,Improve
+Pop,8,6,2,0,Improve
+Pop,10,7,6,10,Improve
+Pop,6,6,8,0,Improve
+Video game music,10,10,8,4,Worsen
+EDM,9,8,5,10,Improve
+Metal,0,0,0,0,No effect
+Country,7,3,1,2,Improve
+Pop,6,2,2,0,Improve
+R&B,7,6,4,6,Improve
+Rock,7,6,0,9,Improve
+Pop,3,2,2,5,Improve
+Rap,2,2,2,2,Improve
+Classical,2,3,2,1,Improve
+Hip hop,2,2,2,5,Improve

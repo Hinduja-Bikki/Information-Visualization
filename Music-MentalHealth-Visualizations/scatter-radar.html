@@ -1,0 +1,376 @@
+<!--
+	To run this, start a python http server:
+	Open your terminal and run the following command:
+
+			python3 -m http.server
+
+	Then go to localserver, "http://0.0.0.0:8000/" or something.
+	Locate your html file, and run it from there.
+	That's it!
+-->
+
+<!DOCTYPE html>
+<html lang = "en">
+
+	<head>
+		<title>MXMH Scatter</title>
+		<meta charset = "UTF-8">
+		<!--Include the d3js library using CDN-->
+		<script src = "https://d3js.org/d3.v7.min.js"></script>
+
+		<style>
+			html, body {
+			  width: 100%;
+			  height: 100%;
+			  margin: 0;
+			  padding: 0;
+			}
+
+			.tooltip 
+      		{
+        		position: absolute;
+        		text-align: center;
+        		padding: 6px;
+        		font-size: 14px;
+        		color: black;
+        		background-color: yellow;
+        		border: 1px solid darkgray;
+        		border-radius: 5px;
+        		pointer-events: none;
+      		}
+		</style>
+
+	</head>
+
+	<body>
+
+		<script>
+			
+			
+            var index = 0;
+
+            let width = 600;
+            let height = 600;
+            let radial_svg = d3.select("body").append("svg")
+            				   .attr("id", "radial_svg")
+                			   .attr("width", width)
+                			   .attr("height", height)
+                			   .attr("transform", "scale(0.5 0.5) translate(200 -50)");
+
+			var svg = d3.select("svg");
+
+            Promise.all
+            ([
+            		
+            		d3.csv("./data/mxmh_survey_results.csv"),
+         
+
+            ]).then(([mxmh_data]) => 
+            {
+            	console.log(mxmh_data);
+            	function getRandomInt(max) 
+				{
+  					return Math.floor(Math.random() * max);
+				}
+
+            	// Define the dimensions of the SVG container
+				var svgWidth = 900;
+				var svgHeight = 700;
+				
+				// Define the margins of the chart
+				var margin = {top: 20, right: 20, bottom: 50, left: 70};
+				
+				// Calculate the width and height of the chart
+				var chartWidth = svgWidth - margin.left - margin.right;
+				var chartHeight = svgHeight - margin.top - margin.bottom;
+				
+
+				// Create the SVG container
+				var svg = d3.select("body")
+				            .append("svg")
+				            .attr("width", svgWidth)
+				            .attr("height", svgHeight)
+				            .attr("transform", "scale(0.7 0.7) translate(-100 10)");
+				
+				// define the tooltip element
+				var tooltip = d3.select("body")
+                				.append("div")
+                				// define a class for it so that we can style it
+                				.attr("class", "tooltip")
+                				// set the opacity to zero in the beginning
+                				.style("opacity", 0);
+				// Create the chart container
+				var chart = svg.append("g")
+				               .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+				
+				// Define the x-axis scale
+				var xScale = d3.scaleLinear()
+				               .domain([0, 100]) // Change the x-axis domain as per your requirements
+				               .range([0, chartWidth]);
+				
+				// Define the y-axis scale
+				var yScale = d3.scaleLinear()
+				               .domain([0, 24]) // Change the y-axis domain as per your requirements
+				               .range([chartHeight, 0]);
+				
+				// Create the x-axis
+				var xAxis = d3.axisBottom(xScale);
+				
+				// Create the y-axis
+				var yAxis = d3.axisLeft(yScale);
+				
+				const colorScale = d3.scaleSequential()
+									 .domain([1, 12])
+									 .interpolator(d3.interpolateMagma);
+
+				// Append the x-axis to the chart
+				chart.append("g")
+				     .attr("transform", "translate(0," + chartHeight + ")")
+				     .call(xAxis);
+				
+				// Append the y-axis to the chart
+				chart.append("g")
+				     .call(yAxis);
+				
+				// Create the scatterplot
+				chart.selectAll("circle")
+				     .data(mxmh_data)
+				     .enter()
+				     .append("circle")
+				     .attr("cx", function(d) {
+				         return xScale(d['Age']); // Use the xScale to map the 'Age' data to the x-axis
+				     })
+				     .attr("cy", function(d) {
+				         return yScale(d['Hours per day']); // Use the yScale to map the 'Hours per day' data to the y-axis
+				     })
+				     .attr("r", function(d) {
+				         return 5;
+				     })
+				     .style("fill", function(d) { 
+				         return colorScale(d['Depression']); 
+				     })
+				     .style("fill-opacity", "0.65")
+				     .on("mouseover", function(event, d){
+	
+					   		// to show the tooltip on hover, increase opacity:
+		      				tooltip.transition()
+		             			   .duration(200)
+		             			   .style("opacity", 0.9);
+		      				// append the data to the tooltip:
+		      				tooltip.html("Hours Per Day: " + d['Hours per day'] + "<br>Age: " + d['Age'] + "<br>Exploratory: " + d['Exploratory'] + "<br>Fav Genre: " + d['Fav genre'] + '<br>Music Effects: ' + d['Music effects'] + "s<br>Primary Streaming Service: " +  d['Primary streaming service'])
+		      						// set tooltip positiion:
+		      						// you have to use trial-and-error for this:
+		             			   .style("left", (event.pageX + 10) + "px")
+		             			   .style("top", (event.pageY + 10) + "px")
+		             			   .style("font-family", "Arial")
+		   				   		   .style("font-size", "12px");
+							
+					   		d3.select(this)
+					   		  .transition(200)
+					   		  .attr("r", function(d){
+					   				//console.log(d.song_title);
+					   				return 70; 
+					   		   })
+					   		  .attr("fill-opacity", "1");
+
+					   		index = mxmh_data.indexOf(d3.select(this).datum());
+          					console.log("Index of data point: " + index);
+          					radial_svg.innerHTML = "";
+          					drawForIndex(index, colorScale(d['Depression']));
+
+					   })
+					   .on("mouseout", function(d){
+	
+					   			// on mouseout, set tooltip-opacity back to zero:
+		      					tooltip.transition()
+		             				   .duration(300)
+		             				   .style("opacity", 0)
+	
+					   			d3.select(this)
+					   		  	  .transition(200)
+					   		  	  .attr("r", function(d){
+					   				return 5;
+					   			  })
+					   		  	  .attr("fill-opacity", "0.6");
+					   })
+
+				chart.append("text")
+					 .attr("class", "x-axis-label")
+					 .attr("x", chartWidth / 2)
+					 .attr("y", chartHeight + margin.bottom - 10)
+					 .text("Age");
+
+				chart.append("text")
+					 .attr("class", "y-axis-label")
+					 .attr("x", -chartHeight / 2)
+					 .attr("y", -margin.left + 35)
+					 .attr("transform", "rotate(-90)")
+					 .text("Hours per day");
+
+				//-------------------RADAR STUFF------------------------------
+
+				function drawForIndex(index, color)
+              	{
+                 function drawRadialPlotChart(data) 
+                 {
+              		
+              		console.log(data);
+
+                    radial_svg.selectAll("*").remove();
+                  
+                    let radialScale = d3.scaleLinear()
+                        .domain([0, 10])
+                        .range([0, 250]);
+                    let ticks = [2, 4, 6, 8, 10];
+                  
+                    radial_svg.selectAll("circle")
+                        .data(ticks)
+                        .join(
+                            enter => enter.append("circle")
+                                .attr("cx", width / 2)
+                                .attr("cy", height / 2)
+                                .attr("fill", "none")
+                                .attr("stroke", "gray")
+                                .attr("r", d => radialScale(d))
+                        );
+            
+                    radial_svg.selectAll(".ticklabel")
+                        .data(ticks)
+                        .join(
+                            enter => enter.append("text")
+                                .attr("class", "ticklabel")
+                                .attr("x", width / 2 + 5)
+                                .attr("y", d => height / 2 - radialScale(d))
+                                .text(d => d.toString())
+                        );
+            
+                    function angleToCoordinate(angle, value){
+                        let x = Math.cos(angle) * radialScale(value);
+                        let y = Math.sin(angle) * radialScale(value);
+                        return {"x": width / 2 + x, "y": height / 2 - y};
+                    }
+                  
+                    let featureData = features.map((f, i) => {
+                        let angle = (Math.PI / 2) + (2 * Math.PI * i / features.length);
+                        return {
+                            "name": f,
+                            "angle": angle,
+                            "line_coord": angleToCoordinate(angle, 10),
+                            "label_coord": angleToCoordinate(angle, 10.5)
+                        };
+                    });
+                  
+                    // draw axis line
+                    radial_svg.selectAll("line")
+                        .data(featureData)
+                        .join(
+                            enter => enter.append("line")
+                                .attr("x1", width / 2)
+                                .attr("y1", height / 2)
+                                .attr("x2", d => d.line_coord.x)
+                                .attr("y2", d => d.line_coord.y)
+                                .attr("stroke","black")
+                        );
+                  
+                    // draw axis label
+                    radial_svg.selectAll(".axislabel")
+                        .data(featureData)
+                        .join(
+                            enter => enter.append("text")
+                                .attr("x", d => d.label_coord.x - 11)
+                                .attr("y", d => d.label_coord.y)
+                                .text(d => d.name)
+                        );
+                  
+                    let line = d3.line()
+                        .x(d => d.x)
+                        .y(d => d.y)
+                        .curve(d3.curveCardinalClosed.tension(0.5));
+                    
+                    function getPathCoordinates(data_point){
+                        let coordinates = [];
+                        for (var i = 0; i < features.length; i++){
+                            let ft_name = features[i];
+                            let angle = (Math.PI / 2) + (2 * Math.PI * i / features.length);
+                            coordinates.push(angleToCoordinate(angle, data_point[i]));
+                        }
+                        return coordinates;
+                    }
+
+                    // draw the path element
+                    radial_svg.selectAll("path")
+                        .data(data)
+                        .enter().append("path")
+                        .datum(getPathCoordinates(data))
+                        .attr("d", line)
+                        .attr("stroke-width", 3)
+                        .attr("fill", color)
+                        .transition()
+  						.duration(100)
+  						.ease(d3.easeLinear)
+                        .attr("stroke-opacity", 1)
+                        .attr("opacity", 0.2);
+        
+                  }
+            
+                  let data = [];
+            
+                  let features = ["Anx", "Dep", "Ins", "OCD"];
+                 
+                  var a, d, i, o;
+
+                  if(parseInt(mxmh_data[index]['Anxiety']) == 0)
+                  {
+                    a = 1;
+                  }
+                  else
+                  {
+                    a = parseInt(mxmh_data[index]['Anxiety']);
+                  }
+
+                  if(parseInt(mxmh_data[index]['Depression']) == 0)
+                  {
+                    d = 1;
+                  }
+                  else
+                  {
+                    d = parseInt(mxmh_data[index]['Depression']);
+                  }
+
+                   if(parseInt(mxmh_data[index]['Insomnia']) == 0)
+                  {
+                    i = 1;
+                  }
+                  else
+                  {
+                    i = parseInt(mxmh_data[index]['Insomnia']);
+                  }
+
+                  if(parseInt(mxmh_data[index]['OCD']) == 0)
+                  {
+                    o = 1;
+                  }
+                  else
+                  {
+                    o = parseInt(mxmh_data[index]['OCD']);
+                  }
+
+                  data = [a, d, i, o];
+                  
+                  console.log(data);
+
+                  drawRadialPlotChart(data);
+                }
+
+                drawForIndex(index, "rgb(44, 105, 70)");
+
+			})
+
+			
+
+		</script>
+
+	</body>
+
+</html>
+	

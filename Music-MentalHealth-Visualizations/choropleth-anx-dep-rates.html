@@ -1,0 +1,365 @@
+<!--
+	In this visualization, we are creating a choropleth map to visualize the relationship between the countries and mental conditions (Anxiety, Depression, Insomnia, OCD) and how they vary across various countries. Coloring is based on the composite score of Anxiety, Depression.
+-->
+
+<!DOCTYPE html>
+<html lang = "en">
+
+	<head>
+		<title>Map of the US</title>
+		<meta charset = "UTF-8">
+		<!--Include the d3js library using CDN-->
+		<script src="https://d3js.org/d3.v7.js"></script>
+
+		<!--
+			The following is just styling for the elements.
+			I have styled the tooltip and the buttons so that
+			they fit in with the aesthetic of the map.
+		-->
+		<style>
+
+					.dropdown-wrapper {
+		  				display: flex;
+		  				align-items: center;
+					}
+		
+					.toggle {
+					  	margin-left: 1000px;
+					  	position: absolute;
+		  				top: 10;
+		  				left: 40;
+					  	width: 60px;
+					  	height: 34px;
+					}
+					
+					.toggle input {
+					  	opacity: 0;
+					  	width: 0;
+					  	height: 0;
+					}
+					
+					.slider {
+					  	position: absolute;
+					  	cursor: pointer;
+					  	top: 0;
+					  	left: 0;
+					  	right: 0;
+					  	bottom: 0;
+					  	background-color: #ccc;
+					  	border-radius: 34px;
+					  	transition: .4s;
+					}
+					
+					.slider:before {
+					  	position: absolute;
+					  	content: "";
+					  	height: 26px;
+					  	width: 26px;
+					  	left: 4px;
+					  	bottom: 4px;
+					  	background-color: white;
+					  	border-radius: 50%;
+					  	transition: .4s;
+					}
+					
+					input:checked + .slider {
+					  	background-color: #2196F3;
+					}
+					
+					input:focus + .slider {
+					  	box-shadow: 0 0 1px #2196F3;
+					}
+					
+					input:checked + .slider:before {
+					  	transform: translateX(26px);
+					}
+
+      		.tooltip 
+      		{
+	        		position: absolute;
+	        		text-align: center;
+	        		padding: 6px;
+	        		font-size: 14px;
+	        		color: black;
+	        		background-color: yellow;
+	        		border: 1px solid black;
+	        		border-radius: 5px;
+	        		pointer-events: none;
+      		}
+
+      		.buttonClass 
+      		{ 
+		      		transform: translate(1px, 1px);
+		  				color: black;
+		  				transition-duration: 1s;
+		  				border: 1px solid white;		
+		  				padding: 10px 15px;
+		  				text-align: center;
+		  				text-decoration: none;
+		  				display: inline-block;
+		  				font-size: 12px;
+		  				margin: 4px 2px;
+		  				cursor: pointer;
+		  				border-radius: 5px;
+      		}
+
+      		.buttonClass:hover 
+      		{
+		  				background-image: linear-gradient(to right, bisque 0%, bisque 100%);
+		  				color: black;
+		  				transition-duration: 1s;
+					}
+		
+					.buttonLabel 
+		      {
+		  				background-image: linear-gradient(to right, #85adad 0%, #85adad 100%);
+		  				color: white;
+		  				pointer-events: none;
+					}
+		
+					.buttonClass:active
+					{
+						background-image: linear-gradient(to right, white 0%, white 100%);
+		  				color: black;
+		  				border: 1px solid darkslategray;
+		  				transition-duration: 0.4s;
+					}
+		
+					.buttonClass:focus
+					{
+						background-image: linear-gradient(to right, white 0%, white 100%);
+		  				color: black;
+		  				border: 1px solid darkslategray;
+		  				transition-duration: 0.4s;
+					}
+		
+					.buttonClass:visited
+					{
+							background-image: linear-gradient(to right, white 0%, white 100%);
+		  				color: black;
+		  				border: 1px solid darkslategray;
+		  				transition-duration: 1s;
+					}
+		
+					.dropdown {
+					  	position: relative;
+					  	display: inline-block;
+					}
+					
+					.menu-button {
+					  	background-image: linear-gradient(to right, #85adad 0%, #85adad 100%);
+		  			  color: white;
+					  	padding: 10px 16px;
+					  	font-size: 14px;
+					  	border: none;
+					  	cursor: pointer;
+					  	border-radius: 5px;
+					}
+					
+					.dropdown-content {
+					  	opacity: 0;
+		  				position: absolute;
+		  				z-index: 1;
+		  				min-width: 160px;
+		  				background-color: none;
+		  				transition: opacity 0.2s ease-in-out;
+					}
+					
+					.dropdown-content a {
+					  	 color: black;
+		  				padding: 12px 16px;
+		  				text-decoration: none;
+		  				display: block;
+					}
+					
+					.dropdown:hover .dropdown-content {
+					  	opacity: 1;
+					}
+					
+					.dropdown-content a:hover {
+					  	background-color: #f1f1f1;
+					}
+
+
+    </style>
+		
+	</head>
+
+	<body>
+		<!--
+			I am using buttons to change the color schemes for the map. I am passing the color scheme
+			to the drawWithScheme() function in our JS using onclick.
+		-->
+		<div class="dropdown-wrapper">
+			<div class="dropdown">
+ 		 		<button class="menu-button">Color Schemes</button>
+  				<div class="dropdown-content">
+					<button type = "button" class = "buttonClass" onclick = "drawWithScheme(d3.interpolatePuRd);">Maroon/Crimson</button>
+					<button type = "button" class = "buttonClass" onclick = "drawWithScheme(d3.interpolateRdPu);">Red/Purple</button>
+					<button type = "button" class = "buttonClass" onclick = "drawWithScheme(d3.interpolateYlGnBu);">Yellow/Green/Blue</button>
+					<button type = "button" class = "buttonClass" onclick = "drawWithScheme(d3.interpolatePuBuGn);">Purple/Blue/Green</button>
+					<button type = "button" class = "buttonClass" onclick = "drawWithScheme(d3.interpolateYlOrRd);">Yellow/Orange/Red</button>
+					<button type = "button" class = "buttonClass" onclick = "drawWithScheme(d3.interpolateBuGn);">Blue/Green</button>
+					<button type = "button" class = "buttonClass" onclick = "drawWithScheme(d3.interpolateYlGn);">Yellow/Green</button>
+					<button type = "button" class = "buttonClass" onclick = "drawWithScheme(d3.interpolateMagma);">Magma</button>
+					<button type = "button" class = "buttonClass" onclick = "drawWithScheme(d3.interpolatePlasma);">Plasma</button>
+					<button type = "button" class = "buttonClass" onclick = "drawWithScheme(d3.interpolateWarm);">Warm</button>
+					<button type = "button" class = "buttonClass" onclick = "drawWithScheme(d3.interpolateCool);">Cool</button>
+				</div>
+			</div>
+		</div>
+
+		<svg width = '1200' height = '1200' transform = "scale(1.2 1.2) translate(300 80)">
+			
+		<svg id = "lab8"></svg>
+
+		</svg>
+
+		<script>
+
+			var svg;
+
+			const MILL = 10000000;
+
+			svg = d3.select("#lab8")
+
+			// define the tooltip element
+			var tooltip = d3.select("body")
+                			.append("div")
+                			// define a class for it so that we can style it
+                			.attr("class", "tooltip")
+                			// set the opacity to zero in the beginning
+                			.style("opacity", 0);
+
+            // we can use d3.json() to read geoJSON files as well:
+
+            var anxData;	
+
+            	
+
+            // drawWithScheme() is the function using which we draw our choropleths,
+            // we pass the colorScheme to this function as an argument
+            function drawWithScheme(colorScheme)
+            {
+            	// we start by loading our .csv data and then moving onto loading the
+            	// json file with feature collection 
+	            d3.csv("./data/c_data.csv").then(function(data)
+	            {
+	            	// get the data into a temporary object
+	            	anxData = data;
+	            	console.log(anxData);
+	
+					d3.json("./data/custom.geo.json").then(function(data)
+					{ 
+						// get the data into a temporary object
+						var tempData = data;
+
+						console.log(data.features[0].properties.admin);
+	
+						// Using d3 projections - we need d3.geoAlbers() and to scale it we will use fitSize()
+						var projection = d3.geoMercator().fitSize([800, 600], tempData);
+		
+						// we will use geoPath() instead of paths
+						var geoGenerator = d3.geoPath().projection(projection);
+	
+						// we need to iterate through both the files to map the data
+						// according to the names. in our CSV file, its called
+						// 'area' and in our JSON file its called 'NAME'.
+						// This is computationally bad, because we are using two for loops 
+						// (polynomial time complexity), but the data is not much, so we can do it easily
+						// without and much overhead
+						for(let i = 0; i < tempData.features.length; i++) 
+						{
+							// we are taking the NAMEs of the US states in a variable
+	  						const stateName = tempData.features[i].properties.admin;
+							
+							// then we iterate through the anxData (CSV file's data)
+	  						for(let j = 0; j < anxData.length; j++) 
+	  						{
+	  							//console.log(stateName);
+	  							// if we find a match, we simply append that to the feature collection:
+	    						if(anxData[j].Country === stateName) 
+	    						{
+	    							console.log("Found");
+	      							tempData.features[i].properties.anxiety = +anxData[j].Anxiety;
+	      							tempData.features[i].properties.depression = + anxData[j].Depression;
+	      							break;
+	    						}
+	  						}
+						}
+				
+						// define the color scheme using the argument passed to this function:
+						const colorScale = d3.scaleSequential()
+											 .domain([1, 12])
+											 .interpolator(colorScheme);
+	
+						d3.select("#lab8")
+						   // we simply append our paths to the svg
+						  .selectAll("path")
+						  // data.features is technically just an array of features (lats and longs), that
+						  // we are gonna use for making our map
+						  .data(tempData.features)
+						  .join("path")
+						  // instead of passing path to 'd', pass geoGenerator
+						  // because we need to pass our mapped data
+						  .attr("d", geoGenerator)
+						  .attr("stroke", "darkslategray")
+						  .attr("stroke-opacity", "0.6")
+						  .attr("transform", "scale(1 1)")
+						  // we fill the states based on the populations:
+						  .style("fill", function(d)
+						  {
+						  		return colorScale(d.properties.anxiety + d.properties.depression);
+						  })
+						  .on("mouseover", function(event, d) {
+	   				   		// to show the tooltip on hover, increase opacity:
+	      					tooltip.transition()
+	             				   .duration(200)
+	             				   .style("opacity", 0.9);
+	      					// append the data to the tooltip:
+	      					tooltip.html("Country: " + d.properties.admin + "<br>Anxiety: " + d.properties.anxiety + "<br>Depression: " + d.properties.depression)
+	      							// set tooltip positiion:
+	      							// you have to use trial-and-error for this:
+	             				   .style("left", (event.pageX - 10) + "px")
+	             				   .style("top", (event.pageY - 10) + "px")
+	             				   .style("font-family", "Arial")
+	   				   			   .style("font-size", "12px");
+	
+							// also adding a bit more highlighting:
+	   				   		d3.select(this).transition()
+	   				   					   .duration(200)
+	   				   					   .style("fill", "red")
+	   				   					   .style("fill-opacity", 0.6)
+	   				   					   .style("stroke", "yellow");
+	   					})
+	   				   .on("mouseout", function(d) {
+	      					// on mouseout, set tooltip-opacity back to zero:
+	      					tooltip.transition()
+	             				   .duration(300)
+	             				   .style("opacity", 0)
+							
+							// on mouseout we need to reset the fill of the state polygon
+	             			// back to the population-color:
+	             			d3.select(this).transition()
+	   				   					   .duration(200)
+	   				   					   .style("fill", function(d)
+						  					{
+						  						return colorScale(d.properties.anxiety + d.properties.depression);
+						  					})
+	   				   					   .style("fill-opacity", 1)
+	   				   					   .style("stroke", "darkslategray");
+	             		});
+					});
+				});
+        	
+        	}
+
+        	// initially we will just call it with one of our schemes:	
+        	drawWithScheme(d3.interpolatePuBu);
+
+
+		</script>
+
+	</body>
+
+</html>
